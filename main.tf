@@ -1,14 +1,25 @@
-resource "random_pet" "rg_name" {
+# resource "random_pet" "rg_name" {
+#   prefix = var.prefix
+# }
+
+resource "random_id" "rg_name" {
+  byte_length = 8
   prefix = var.prefix
 }
 
+
 resource "azurerm_resource_group" "rg" {
-  name     = "${random_pet.rg_name.id}-rg"
+  name     = "${random_id.rg_name.id}-rg"
   location = var.location
 }
 
+resource "random_id" "rg_name" {
+  byte_length = 8
+  prefix = var.prefix
+}
+
 resource "azurerm_virtual_network" "vnet" {
-  name                = "${random_pet.rg_name.id}-network"
+  name                = "${random_id.rg_name.id}-network"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -22,7 +33,7 @@ resource "azurerm_subnet" "intsubnet" {
 }
 
 resource "azurerm_network_security_group" "sg" {
-  name                = "${random_pet.rg_name.id}-sg"
+  name                = "${random_id.rg_name.id}-sg"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
