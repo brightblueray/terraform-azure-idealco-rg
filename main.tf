@@ -13,11 +13,6 @@ resource "azurerm_resource_group" "rg" {
   location = var.location
 }
 
-resource "random_id" "rg_name" {
-  byte_length = 8
-  prefix = var.prefix
-}
-
 resource "azurerm_virtual_network" "vnet" {
   name                = "${random_id.rg_name.id}-network"
   address_space       = ["10.0.0.0/16"]
