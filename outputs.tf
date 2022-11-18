@@ -1,7 +1,3 @@
-output "region" {
-  value = var.region
-}
-
-output "prefix" {
-  value = var.prefix
+output "rg-name" {
+  value = azurerm_resource_group.rg.name
 }

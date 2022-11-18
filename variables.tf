@@ -1,12 +1,14 @@
 # General variables
-variable "region" {
-  type        = string
-  description = "(required) The AWS region to use"
-  default     = "us-east-2"
-}
-
 variable "prefix" {
   type        = string
-  description = "prefix for searching AWS console"
+  description = "The prefix which should be used for all resources in this example"
   default     = "rryjewski"
 }
+
+variable "location" {
+  type        = string
+  description = "The Azure Region in which all resources in this example should be created."
+  default     = "eastus2"
+}
+
+variable "buildTags" {}
